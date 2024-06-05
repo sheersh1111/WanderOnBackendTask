@@ -1,8 +1,3 @@
-## url-shortener
-https://url-shortener-ri3x.onrender.com/
-
-## POSTMAN Documentation of API's
-https://documenter.getpostman.com/view/21465485/2s93Y2TMnp
 
 # Requirements for running in localhost
 npm init
