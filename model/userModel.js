@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
 
     }
     ,
+    userName: {
+        type: String,
+        required: [true, "Please Enter Your username"],
+        unique: true,
+    },
     email: {
         type: String,
         required: [true, "Please Enter Your email"],
@@ -51,9 +56,6 @@ userSchema.pre("save", async function (next) {
 
 //Compare Password
 userSchema.methods.authenticate = async function (enteredPassword) {
-    console.log("Inside model")
-    console.log(this.password)
-    console.log(enteredPassword)
     return await bcrypt.compare(enteredPassword, this.password)
 };
 

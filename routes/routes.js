@@ -1,5 +1,5 @@
 const express = require("express");
-const { urlShortener, redirect } = require("../controller/urlController");
+const { service1,service2 } = require("../controller/serviceController");
 const { registerUser, loginUser, logout } = require("../controller/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 const router= express.Router();
@@ -7,7 +7,7 @@ const router= express.Router();
 const rateLimit = require('express-rate-limit');
 
 const rateLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000*60, 
+  windowMs: 1 * 60 * 1000*60, //1 hour timer  
   max: 10,
   statusCode : 403,
   message: 'You have exceeded the 10 requests in 1 hour limit!',
@@ -20,8 +20,8 @@ router.route("/user/login").post(loginUser); // login user
 router.get("/logout",logout);//logout user
 
 
-router.post("/shorten",isAuthenticatedUser,rateLimiter,urlShortener);//url shortener route
-router.get("/:code",redirect);// url redirect
+router.get("/service1",rateLimiter,isAuthenticatedUser,service1);//url shortener route
+router.get("/service2",rateLimiter,isAuthenticatedUser,service2);//url shortener route
 
 
 module.exports = router;

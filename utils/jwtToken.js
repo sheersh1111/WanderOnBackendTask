@@ -6,6 +6,7 @@ const getJWTToken = (id) =>{
 }
 //creating token and saving in cookie
 const sendToken =(user,statusCode,res) =>{
+    user.password=undefined;
     const token=getJWTToken(user._id);
     //options for cookie
     const options={
